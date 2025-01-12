@@ -7,11 +7,13 @@ export const useAuth = () => {
   const login = async (email, senha) => {
     try {
       const response = await api.post("login", { email, senha });
-      const { id, token, nome, email, user: loggedUser } = response.data;
+
+      const { id, token, nome, user: loggedUser } = response.data;
+
       localStorage.setItem("id", id);
       localStorage.setItem("token", token);
       localStorage.setItem("nome", nome);
-      localStorage.setItem("email", email);
+
       setUser(loggedUser);
     } catch (error) {
       console.error(

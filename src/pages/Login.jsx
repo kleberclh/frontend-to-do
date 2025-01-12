@@ -1,15 +1,23 @@
 import React, { useState } from "react";
 import Input from "../components/input";
-
+import { useAuth } from "../hooks/authHook";
+import { useNavigate } from "react-router-dom";
 export default function Login() {
-  const [formData, setFormData] = useState({ email: "", password: "" });
+  const { login } = useAuth();
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
 
-  const handleChange = (e) => {
 
-  };
 
-  const handleSubmit = (e) => {
-
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await login(email, senha);
+      navigate("/tarefas");
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -23,16 +31,16 @@ export default function Login() {
         type="email"
         name="email"
         placeholder="Digite seu email"
-        value={formData.email}
-        onChange={handleChange}
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
       />
       <Input
         label="Senha"
         type="password"
-        name="password"
+        name="senha"
         placeholder="Digite sua senha"
-        value={formData.password}
-        onChange={handleChange}
+        value={senha}
+        onChange={(e) => setSenha(e.target.value)}
       />
       <button
         type="submit"
