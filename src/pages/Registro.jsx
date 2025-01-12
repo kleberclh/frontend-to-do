@@ -56,6 +56,11 @@ export default function Registro() {
       >
         Registrar
       </button>
+      <div className="flex justify-center">
+        <p>
+          <a href="/login">Já tem uma conta? Faça login!</a>
+        </p>
+      </div>
     </form>
   );
 }

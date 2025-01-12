@@ -30,7 +30,7 @@ export default function ListarTarefas() {
   }
 
   return (
-    <div className="max-w-md mx-auto p-4 border rounded-lg shadow-sm">
+    <div className="max-w-md mx-auto p-4 mt-14 border rounded-lg shadow-sm">
       <h1 className="text-xl font-bold text-center mb-4">Minhas Tarefas</h1>
       <ul className="space-y-2">
         {tasks.map((task) => (
