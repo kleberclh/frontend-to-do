@@ -1,6 +1,8 @@
 // components/ListarTarefas.jsx
 import React from "react";
 import useUserTasks from "../hooks/useUserTasks";
+import DeleteIcon from "../icons/DeleteIcon";
+import EditIcon from "../icons/EditIcon";
 
 export default function ListarTarefas() {
   const { tasks, loading, error, refetch } = useUserTasks();
@@ -39,7 +41,15 @@ export default function ListarTarefas() {
             className="flex justify-between items-center p-2 border rounded bg-gray-100 hover:bg-gray-200"
           >
             <span>{task.titulo}</span>
-            <span className="text-gray-500 text-sm">{task.dataCriacao}</span>
+            {/* <span className="text-gray-500 text-sm">{task.data_criacao}</span> */}
+            <div className="flex gap-4">
+              <span className="text-blue-400 hover:text-blue-700">
+                <EditIcon />
+              </span>
+              <span className="text-red-400 hover:text-red-700">
+                <DeleteIcon />
+              </span>
+            </div>
           </li>
         ))}
       </ul>
