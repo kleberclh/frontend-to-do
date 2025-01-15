@@ -3,6 +3,7 @@ import React from "react";
 import useUserTasks from "../hooks/useUserTasks";
 import DeleteIcon from "../icons/DeleteIcon";
 import EditIcon from "../icons/EditIcon";
+import api from "../api/axios";
 
 export default function ListarTarefas() {
   const { tasks, loading, error, refetch } = useUserTasks();
@@ -31,6 +32,16 @@ export default function ListarTarefas() {
     );
   }
 
+  const deletarTasks = async (id) => {
+    try {
+      const deletar = await api.delete(`/tarefa/${id}`);
+      console.log(`Tarefa com ID: ${id} deletada`);
+      return deletar;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className="max-w-md mx-auto p-4 mt-14 border rounded-lg shadow-sm">
       <h1 className="text-xl font-bold text-center mb-4">Minhas Tarefas</h1>
@@ -43,11 +54,16 @@ export default function ListarTarefas() {
             <span>{task.titulo}</span>
             {/* <span className="text-gray-500 text-sm">{task.data_criacao}</span> */}
             <div className="flex gap-4">
-              <span className="text-blue-400 hover:text-blue-700">
-                <EditIcon />
-              </span>
+              <button>
+                {" "}
+                <span className="text-blue-400 hover:text-blue-700">
+                  <EditIcon />
+                </span>
+              </button>
               <span className="text-red-400 hover:text-red-700">
-                <DeleteIcon />
+                <button onClick={() => deletarTasks(task.id)}>
+                  <DeleteIcon />
+                </button>
               </span>
             </div>
           </li>

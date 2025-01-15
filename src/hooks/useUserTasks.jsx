@@ -11,7 +11,7 @@ const useUserTasks = () => {
     setLoading(true);
     try {
       const response = await api.get("/me"); // Endpoint para buscar as tarefas do usuário
-      console.log(response);
+      
       setTasks(response.data.tarefas); // Certifique-se de que "tasks" corresponde ao formato retornado pela API
     } catch (err) {
       console.error("Erro ao buscar tarefas do usuário:", err);
