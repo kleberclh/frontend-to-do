@@ -1,20 +1,23 @@
 import React, { useState } from "react";
 import Input from "../components/input";
 import useTask from "../hooks/taskHook";
+import { useEffect } from "react";
 
 export default function CriaTarefa() {
   const [tarefa, setTarefa] = useState("");
-  const { addTasks } = useTask(); 
+  const { addTasks } = useTask();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await addTasks(tarefa); 
+      await addTasks(tarefa);
       setTarefa("");
     } catch (error) {
       console.error("Erro ao adicionar tarefa:", error);
     }
   };
+
+
 
   return (
     <>

@@ -36,7 +36,7 @@ export default function ListarTarefas() {
     try {
       const deletar = await api.delete(`/tarefa/${id}`);
       console.log(`Tarefa com ID: ${id} deletada`);
-      return deletar;
+      refetch(); 
     } catch (error) {
       console.error(error);
     }
